@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "version": "1.4.1",
+    "libraryName": "spfx-react-jest-testing",
+    "libraryId": "7caf9356-b978-438b-8048-e6049c869e37",
+    "environment": "spo"
+  }
+}
