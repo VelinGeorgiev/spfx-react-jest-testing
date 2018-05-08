@@ -9,10 +9,19 @@
           "manifest": "./src/webparts/reactJest/ReactJestWebPart.manifest.json"
         }
       ]
+    },
+    "ice-cream-shop-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/iceCreamShop/IceCreamShopWebPart.js",
+          "manifest": "./src/webparts/iceCreamShop/IceCreamShopWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "ReactJestWebPartStrings": "lib/webparts/reactJest/loc/{locale}.js"
+    "ReactJestWebPartStrings": "lib/webparts/reactJest/loc/{locale}.js",
+    "IceCreamShopWebPartStrings": "lib/webparts/iceCreamShop/loc/{locale}.js"
   }
 }
