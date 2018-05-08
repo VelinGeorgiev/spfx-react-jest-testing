@@ -1,5 +1,5 @@
 {
-  "name": "spfx-react-jest-testing",
+  "name": "react-jest-testing",
   "version": "0.0.1",
   "private": true,
   "engines": {
@@ -8,7 +8,7 @@
   "scripts": {
     "build": "gulp bundle",
     "clean": "gulp clean",
-    "test": "jest --forceExit --coverage --verbose"
+    "test": "jest"
   },
   "dependencies": {
     "react": "15.6.2",
@@ -29,8 +29,38 @@
     "@types/chai": ">=3.4.34 <3.6.0",
     "@types/mocha": ">=2.2.33 <2.6.0",
     "ajv": "~5.2.2",
-    "ts-jest": "22.4.2",
-    "jest": "22.4.2",
-    "@types/jest": "22.2.2"
+    "@types/jest": "22.2.3",
+    "jest": "22.4.3",
+    "enzyme": "3.3.0",
+    "@types/enzyme": "3.1.10",
+    "enzyme-adapter-react-15": "1.0.5",
+    "react-test-renderer": "15.6.2",
+    "ts-jest": "22.4.5",
+    "identity-obj-proxy": "3.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "testMatch": [
+      "**/src/**/*.test.+(ts|tsx|js)"
+    ],
+    "mapCoverage": true,
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "html"
+    ],
+    "coverageDirectory": "<rootDir>/cov/",
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    }
   }
 }

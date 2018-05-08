@@ -1,24 +1,20 @@
 import * as React from 'react';
 import styles from './ReactJest.module.scss';
 import { IReactJestProps } from './IReactJestProps';
-import { escape } from '@microsoft/sp-lodash-subset';
 
 export default class ReactJest extends React.Component<IReactJestProps, {}> {
+  
+  public componentDidMount(): void {
+    if(this.props.description === 'desc'){
+      console.log('ok1');
+    } else {
+      console.log('never going to be hit');
+    }
+  }
   public render(): React.ReactElement<IReactJestProps> {
     return (
-      <div className={ styles.reactJest }>
-        <div className={ styles.container }>
-          <div className={ styles.row }>
-            <div className={ styles.column }>
-              <span className={ styles.title }>Welcome to SharePoint!</span>
-              <p className={ styles.subTitle }>Customize SharePoint experiences using Web Parts.</p>
-              <p className={ styles.description }>{escape(this.props.description)}</p>
-              <a href="https://aka.ms/spfx" className={ styles.button }>
-                <span className={ styles.label }>Learn more</span>
-              </a>
-            </div>
-          </div>
-        </div>
+      <div id='iceCreamComponent' className={ styles.button }>
+        WORKS!
       </div>
     );
   }

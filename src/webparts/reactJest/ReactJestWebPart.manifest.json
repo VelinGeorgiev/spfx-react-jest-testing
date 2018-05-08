@@ -1,6 +1,6 @@
 {
   "$schema": "https://dev.office.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
-  "id": "c2019bf6-2eff-48e1-9d01-c89e65b94631",
+  "id": "0ea3b10f-06ec-441a-a850-990304c0e006",
   "alias": "ReactJestWebPart",
   "componentType": "WebPart",
 

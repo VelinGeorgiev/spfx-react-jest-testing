@@ -2,6 +2,6 @@
   "$schema": "https://dev.office.com/json-schemas/spfx-build/deploy-azure-storage.schema.json",
   "workingDir": "./temp/deploy/",
   "account": "<!-- STORAGE ACCOUNT NAME -->",
-  "container": "spfx-react-jest-testing",
+  "container": "react-jest-testing",
   "accessKey": "<!-- ACCESS KEY -->"
 }
