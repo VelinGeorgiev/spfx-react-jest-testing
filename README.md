@@ -15,7 +15,7 @@ There is also a _Jest Watch_ (watcher) configuration that will let live executio
 
 ## Sinonjs is included as mocking framework for the SPFx solution
 
-The solution also includes (Sinonjs)[http://sinonjs.org/] that can be used to spawn spies, stubs and mocks.
+The solution also includes [Sinonjs](http://sinonjs.org/) that can be used to spawn spies, stubs and mocks.
 
 ## Enzyme is included to extend to unit tests support for React Components
 
