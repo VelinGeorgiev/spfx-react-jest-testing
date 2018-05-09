@@ -1,30 +1,27 @@
 /// <reference types="jest" />
-/// <reference types="enzyme" />
 
 import * as React from 'react';
-import * as Enzyme from 'enzyme';
+import { configure, mount, ReactWrapper} from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-15';
+
 import { IIceCreamShopProps } from '../components/IIceCreamShopProps';
 import { IIceCreamShopState } from '../components/IIceCreamShopState';
 import IceCreamShop from '../components/IceCreamShop';
 import { IceCreamFakeProvider } from '../iceCreamProviders/IceCreamFakeProvider';
 
-Enzyme.configure({ adapter: new Adapter() });
+configure({ adapter: new Adapter() });
 
-describe('Enzyme advanced', () => {
+describe('Enzyme props, state, lifecycle events test', () => {
 
-  let reactComponent: Enzyme.ReactWrapper<IIceCreamShopProps, IIceCreamShopState>;
+  let reactComponent: ReactWrapper<IIceCreamShopProps, IIceCreamShopState>;
 
   beforeEach(() => {
 
-    reactComponent = Enzyme.mount(React.createElement(
+    reactComponent = mount(React.createElement(
       IceCreamShop,
       {
         iceCreamProvider: new IceCreamFakeProvider(),
         strings: {
-            PropertyPaneDescription: "Description",
-            BasicGroupName: "Group Name",
-            DescriptionFieldLabel: "Description Field",
             TitleLabel: "PnP Ice Cream Shop",
             GetItLabel: "Get it for just ", 
             QuantityLabel: "Quantity",
@@ -36,6 +33,10 @@ describe('Enzyme advanced', () => {
     ));
   });
 
+  afterEach(() => {
+    reactComponent.unmount();
+  });
+
   it('should has test title is the props', () => {
 
     expect(reactComponent.props().strings.TitleLabel).toBe("PnP Ice Cream Shop");
@@ -45,33 +46,32 @@ describe('Enzyme advanced', () => {
 
     const state = reactComponent.state();
     
-    expect(state.hasBoughtIceCream).toBe(false);
-    //expect(state.iceCreamFlavoursList.length).toBe(0);
+    expect(state.hasBoughtIceCream).toBe(false); 
     expect(state.quantity).toBe(1);
     expect(state.selectedIceCream).toBe(null);
   });
 
-  it('should buy form be hidden', () => {
+  it('should buy form be hidden initialy', () => {
 
-    const buyForm = reactComponent.find("#buyForm");
+    const buyForm = reactComponent.find("#buyForm");  
 
     expect(buyForm.length).toBe(0);
   });
 
-  it('should unhide the buy form after ice cream has been selected', (done) => {
+  it('should unhide the buy form after ice cream has been selected', () => {
 
-    setTimeout(_ => {
+      reactComponent.update(); // http://airbnb.io/enzyme/docs/api/ShallowWrapper/update.html
 
-      const selectButton = reactComponent.find('[data-automationid="listItem"]').first();
+      // more advanced selector
+      const selectIceCreamButton = reactComponent.find("#iceCreamFlavoursList button").first();     
       
-      selectButton.simulate('click');
+      selectIceCreamButton.simulate('click'); 
 
+      // after the selectIceCreamButton is clicked   
+      // the buy form should be rendered
+      // lets try to find in in the component
       const buyForm = reactComponent.find("#buyForm");
       
       expect(buyForm.length).toBeGreaterThan(0);
-
-      done();
-
-    }, 10);
   });
 });

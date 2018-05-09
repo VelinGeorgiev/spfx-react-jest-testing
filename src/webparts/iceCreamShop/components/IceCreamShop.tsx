@@ -41,11 +41,11 @@ export default class IceCreamShop extends React.Component<IIceCreamShopProps, II
                   this.state.iceCreamFlavoursList &&
                   this.state.iceCreamFlavoursList.map((item, index) => {
 
-                    return <div key={index} data-uniqueId={item.UniqueId}>
+                    return <div key={index}>
 
                       <div className={styles.subTitle}>{item.Title}</div>
 
-                      <button data-automationid="listItem" className={styles.button} onClick={this.selectHandler.bind(this, item)}>
+                      <button data-automationid={`item-${index}`} className={styles.button} onClick={this.selectHandler.bind(this, item)}>
                         {this.props.strings.GetItLabel} {item.Price}
                       </button>
 
@@ -89,8 +89,9 @@ export default class IceCreamShop extends React.Component<IIceCreamShopProps, II
   }
 
   public buyHandler(): void {
-
-    if (this.isValid() == false) return;
+    if (this.isValid() === false) { 
+      return;
+    }
 
     const uniqueid = this.state.selectedIceCream.UniqueId;
     const quantity = this.state.quantity;
@@ -113,9 +114,7 @@ export default class IceCreamShop extends React.Component<IIceCreamShopProps, II
     });
   }
 
-  private isValid(): boolean {
-    return this.state.selectedIceCream
-      && this.state.selectedIceCream.UniqueId.length > 0
-      && this.state.quantity > 0;
+  public isValid(): boolean {
+    return this.state.selectedIceCream !== null && this.state.quantity > 0;  
   }
 }

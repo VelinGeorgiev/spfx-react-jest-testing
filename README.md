@@ -93,6 +93,10 @@ This Web Part illustrates the following concepts on top of the SharePoint Framew
 - The use of Enzyme to speed up React unit test productivity.
 - The use of [SharePoint Patterns and Practices Reusable Client-side Libraries (PnP Js)](https://github.com/pnp/pnpjs).
 
+## Usefull links
+
+[Jest cheatsheet](https://devhints.io/jest)
+
 
 <img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/samples/react-jest-testing" />
 
