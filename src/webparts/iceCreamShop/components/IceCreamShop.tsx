@@ -21,10 +21,7 @@ export default class IceCreamShop extends React.Component<IIceCreamShopProps, II
 
   public componentDidMount(): void {
 
-    // Retrieve the ice cream types.
     this.props.iceCreamProvider.getAll().then((result: IceCream[]) => {
-
-      // Update the iceCreamFlavoursList.
       this.setState((state: IIceCreamShopState): IIceCreamShopState => {
 
         state.iceCreamFlavoursList = result;
