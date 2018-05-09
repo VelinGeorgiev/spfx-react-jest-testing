@@ -2,7 +2,7 @@ import { IceCream } from "./IceCream";
 
 export interface IIceCreamProvider {
 
-    getAll(): Promise<Array<IceCream>>;
+    getAll(): Promise<IceCream[]>;
 
-    buy(id: number): Promise<void>;
+    buy(uniqueid: string, quantity: number): Promise<void>;
 }

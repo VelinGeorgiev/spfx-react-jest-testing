@@ -1,4 +1,5 @@
 export interface IceCream {
-    id: number;
-    flavour: string;
+    UniqueId: string; 
+    Title: string;
+    Price: number;
 }

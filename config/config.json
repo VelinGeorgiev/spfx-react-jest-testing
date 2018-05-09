@@ -2,14 +2,6 @@
   "$schema": "https://dev.office.com/json-schemas/spfx-build/config.2.0.schema.json",
   "version": "2.0",
   "bundles": {
-    "react-jest-web-part": {
-      "components": [
-        {
-          "entrypoint": "./lib/webparts/reactJest/ReactJestWebPart.js",
-          "manifest": "./src/webparts/reactJest/ReactJestWebPart.manifest.json"
-        }
-      ]
-    },
     "ice-cream-shop-web-part": {
       "components": [
         {
@@ -21,7 +13,6 @@
   },
   "externals": {},
   "localizedResources": {
-    "ReactJestWebPartStrings": "lib/webparts/reactJest/loc/{locale}.js",
     "IceCreamShopWebPartStrings": "lib/webparts/iceCreamShop/loc/{locale}.js"
   }
 }

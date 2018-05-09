@@ -10,21 +10,32 @@ import {
 import * as strings from 'IceCreamShopWebPartStrings';
 import IceCreamShop from './components/IceCreamShop';
 import { IIceCreamShopProps } from './components/IIceCreamShopProps';
-import { IceCreamFakeProvider } from './iceCreamProviders/IceCreamFakeProvider';
+// import { IceCreamFakeProvider } from './iceCreamProviders/IceCreamFakeProvider'; // when offline workbench.
+
+import { sp } from "@pnp/sp";
+import { IceCreamPnPJsProvider } from './iceCreamProviders/IceCreamPnPJsProvider';
 
 export interface IIceCreamShopWebPartProps {
   description: string;
 }
 
-
 export default class IceCreamShopWebPart extends BaseClientSideWebPart<IIceCreamShopWebPartProps> {
 
+  public onInit(): Promise<void> {
+
+    return super.onInit().then(_ => {
+      sp.setup({
+        spfxContext: this.context
+      });
+    });
+  }
+
   public render(): void {
-    const element: React.ReactElement<IIceCreamShopProps > = React.createElement(
+    const element: React.ReactElement<IIceCreamShopProps> = React.createElement(
       IceCreamShop,
       {
-        title: "",
-        iceCreamProvider: new IceCreamFakeProvider(),
+        title: "PnP Ice Cream Shop",
+        iceCreamProvider: new IceCreamPnPJsProvider(sp) //new IceCreamFakeProvider() // when offline workbench.
       }
     );
 

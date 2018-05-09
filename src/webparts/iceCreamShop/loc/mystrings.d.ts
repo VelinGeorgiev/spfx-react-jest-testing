@@ -2,6 +2,11 @@ declare interface IIceCreamShopWebPartStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
   DescriptionFieldLabel: string;
+  GetItLabel: string;
+  QuantityLabel: string;
+  ForLabel: string;
+  BuyLabel: string;
+  SuccessLabel: string;
 }
 
 declare module 'IceCreamShopWebPartStrings' {
