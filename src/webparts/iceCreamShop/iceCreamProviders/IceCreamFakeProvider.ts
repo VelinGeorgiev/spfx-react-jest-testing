@@ -14,6 +14,9 @@ export class IceCreamFakeProvider implements IIceCreamProvider {
                 { Uniqueid: "10", Title: "Vanilla" }
             ] as IceCream[];
 
+            // fake https call by resolving it after 10 milisecs.
+            //setTimeout(_ => { resolve(list); }, 10);
+
             resolve(list);
         });
     }
@@ -21,6 +24,9 @@ export class IceCreamFakeProvider implements IIceCreamProvider {
     public buy(uniqueid: string, quantity: number): Promise<void> {
 
         return new Promise<void>((resolve, reject) => {
+            
+            // fake https call by resolving it after 10 milisecs.
+            //setTimeout(_ => { resolve(); }, 10);
 
             resolve();
         });

@@ -20,15 +20,25 @@ describe('Enzyme advanced', () => {
     reactComponent = Enzyme.mount(React.createElement(
       IceCreamShop,
       {
-        title: "Test title",
         iceCreamProvider: new IceCreamFakeProvider(),
+        strings: {
+            PropertyPaneDescription: "Description",
+            BasicGroupName: "Group Name",
+            DescriptionFieldLabel: "Description Field",
+            TitleLabel: "PnP Ice Cream Shop",
+            GetItLabel: "Get it for just ", 
+            QuantityLabel: "Quantity",
+            ForLabel: "for",
+            BuyLabel: "Buy",
+            SuccessLabel: "Success"
+          } as IIceCreamShopWebPartStrings
       }
     ));
   });
 
   it('should has test title is the props', () => {
 
-    expect(reactComponent.props().title).toBe("Test title");
+    expect(reactComponent.props().strings.TitleLabel).toBe("PnP Ice Cream Shop");
   });
 
   it('should has initial state', () => {
@@ -36,7 +46,7 @@ describe('Enzyme advanced', () => {
     const state = reactComponent.state();
     
     expect(state.hasBoughtIceCream).toBe(false);
-    expect(state.iceCreamFlavoursList.length).toBe(0);
+    //expect(state.iceCreamFlavoursList.length).toBe(0);
     expect(state.quantity).toBe(1);
     expect(state.selectedIceCream).toBe(null);
   });
@@ -48,11 +58,11 @@ describe('Enzyme advanced', () => {
     expect(buyForm.length).toBe(0);
   });
 
-  it('should select button unhide the buy form', (done) => {
+  it('should unhide the buy form after ice cream has been selected', (done) => {
 
     setTimeout(_ => {
 
-      const selectButton = reactComponent.find("#iceCreamFlavoursList button").first();
+      const selectButton = reactComponent.find('[data-automationid="listItem"]').first();
       
       selectButton.simulate('click');
 

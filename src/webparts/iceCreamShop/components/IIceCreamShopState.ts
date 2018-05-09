@@ -4,7 +4,7 @@ export interface IIceCreamShopState {
     selectedIceCream: IceCream;
     quantity: number;
     iceCreamFlavoursList: IceCream[];
-    totalPrice: number,
+    totalPrice: number;
     hasBoughtIceCream: boolean;
   }
   

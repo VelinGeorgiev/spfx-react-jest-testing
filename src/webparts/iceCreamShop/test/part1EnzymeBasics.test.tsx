@@ -17,8 +17,18 @@ beforeEach(() => {
   reactComponent = Enzyme.mount(React.createElement(
     IceCreamShop,
     {
-      title: "Test title",
       iceCreamProvider: new IceCreamFakeProvider(),
+      strings: {
+        PropertyPaneDescription: "Description",
+        BasicGroupName: "Group Name",
+        DescriptionFieldLabel: "Description Field",
+        TitleLabel: "PnP Ice Cream Shop",
+        GetItLabel: "Get it for just ", 
+        QuantityLabel: "Quantity",
+        ForLabel: "for",
+        BuyLabel: "Buy",
+        SuccessLabel: "Success"
+      } as IIceCreamShopWebPartStrings
     }
   ));
 });
@@ -26,7 +36,7 @@ beforeEach(() => {
 it('should root web part element exists', () => {
 
   // Define the css selector.
-  let cssSelector: string = '#iceCreamComponent';
+  let cssSelector: string = '#iceCreamShop';
 
   // Find the elemet using css selector.
   const element = reactComponent.find(cssSelector);
@@ -36,13 +46,13 @@ it('should root web part element exists', () => {
 
 it('should has the correct title', () => {
 
-  // Define the css selector.
-  let cssSelector: string = '.ms-font-xl .ms-fontColor-white';
+  // Define contains/like css selector
+  let cssSelector: string = 'h1';
 
   // Find the elemet using css selector.
   const text = reactComponent.find(cssSelector).text();
 
-  expect(text).toBe("Test title");
+  expect(text).toBe("PnP Ice Cream Shop");
 });
 
 // Usefull links:

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styles from './IceCreamShop.module.scss';
-import * as strings from 'IceCreamShopWebPartStrings';
 import { IIceCreamShopProps } from './IIceCreamShopProps';
 import { escape } from '@microsoft/sp-lodash-subset';
 import { IIceCreamShopState } from './IIceCreamShopState';
@@ -32,22 +31,22 @@ export default class IceCreamShop extends React.Component<IIceCreamShopProps, II
 
   public render(): React.ReactElement<IIceCreamShopProps> {
     return (
-      <div className={styles.ic}>
+      <div className={styles.ic} id="iceCreamShop">
         <div className={styles.container}>
           <div className={styles.row}>
             <div className={styles.column}>
-              <span className={styles.title}>{this.props.title}</span>
+              <h1 className={styles.title}>{this.props.strings.TitleLabel}</h1>
               <div id="iceCreamFlavoursList">
                 {
                   this.state.iceCreamFlavoursList &&
                   this.state.iceCreamFlavoursList.map((item, index) => {
 
-                    return <div key={item.UniqueId}>
+                    return <div key={index} data-uniqueId={item.UniqueId}>
 
                       <div className={styles.subTitle}>{item.Title}</div>
 
-                      <button className={styles.button} onClick={this.selectHandler.bind(this, item)}>
-                        {strings.GetItLabel} {item.Price}
+                      <button data-automationid="listItem" className={styles.button} onClick={this.selectHandler.bind(this, item)}>
+                        {this.props.strings.GetItLabel} {item.Price}
                       </button>
 
                     </div>;
@@ -59,19 +58,19 @@ export default class IceCreamShop extends React.Component<IIceCreamShopProps, II
 
                 <div id="buyForm">
                   <div className={styles.row}>
-                    <label className={styles.subTitle}>{strings.QuantityLabel}: </label>
+                    <label className={styles.subTitle}>{this.props.strings.QuantityLabel}: </label>
                     <input type="number" value={this.state.quantity} min="1" onChange={this.quantityChangeHandler.bind(this)} />
                   </div>
 
                   <div className={styles.row}>
                     <button className={styles.button} id="buyButton" onClick={this.buyHandler.bind(this)}>
-                      {strings.BuyLabel} x{this.state.quantity} {this.state.selectedIceCream.Title} {strings.ForLabel} {this.state.totalPrice}
+                      {this.props.strings.BuyLabel} x{this.state.quantity} {this.state.selectedIceCream.Title} {this.props.strings.ForLabel} {this.state.totalPrice}
                     </button>
                   </div>
                 </div>
               }
 
-              {this.state.hasBoughtIceCream && <p>{strings.SuccessLabel}!</p>}
+              {this.state.hasBoughtIceCream && <p>{this.props.strings.SuccessLabel}!</p>}
             </div>
           </div>
         </div>

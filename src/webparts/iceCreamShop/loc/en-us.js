@@ -7,6 +7,7 @@ define([], function() {
     "QuantityLabel": "Quantity",
     "ForLabel": "for",
     "BuyLabel": "Buy",
-    "SuccessLabel": "Success"
+    "SuccessLabel": "Success",
+    "TitleLabel": "PnP Ice Cream Shop"
   }
 });

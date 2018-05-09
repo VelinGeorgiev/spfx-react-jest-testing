@@ -2,6 +2,7 @@ declare interface IIceCreamShopWebPartStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
   DescriptionFieldLabel: string;
+  TitleLabel: string;
   GetItLabel: string;
   QuantityLabel: string;
   ForLabel: string;
