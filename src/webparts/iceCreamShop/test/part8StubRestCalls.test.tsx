@@ -15,7 +15,7 @@ import * as sinon from 'sinon';
 
 configure({ adapter: new Adapter() });
 
-describe('Sinon stubs', () => {
+describe('Stub rest calls example', () => {
 
   let reactComponent: ReactWrapper<IIceCreamShopProps, IIceCreamShopState>;
   let iceCreamPnPJsProviderGetAllStub: sinon.SinonStub;
