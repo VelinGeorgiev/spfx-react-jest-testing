@@ -22,12 +22,7 @@ describe('Enzyme basic', () => {
       {
         iceCreamProvider: new IceCreamFakeProvider(),
         strings: {
-          TitleLabel: "PnP Ice Cream Shop",
-          GetItLabel: "Get it for just ",
-          QuantityLabel: "Quantity",
-          ForLabel: "for",
-          BuyLabel: "Buy",
-          SuccessLabel: "Success"
+          TitleLabel: "PnP Ice Cream Shop"
         } as IIceCreamShopWebPartStrings
       }
     ));

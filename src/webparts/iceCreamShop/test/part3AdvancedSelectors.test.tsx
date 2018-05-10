@@ -21,14 +21,7 @@ describe('Advanced selectors', () => {
       IceCreamShop,
       {
         iceCreamProvider: new IceCreamFakeProvider(),
-        strings: {
-            TitleLabel: "PnP Ice Cream Shop",
-            GetItLabel: "Get it for just ", 
-            QuantityLabel: "Quantity",
-            ForLabel: "for",
-            BuyLabel: "Buy",
-            SuccessLabel: "Success"
-          } as IIceCreamShopWebPartStrings
+        strings: {} as IIceCreamShopWebPartStrings
       }
     ));
   });
