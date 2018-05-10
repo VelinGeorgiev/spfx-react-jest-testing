@@ -42,7 +42,8 @@
     "enzyme-adapter-react-15": "1.0.5",
     "react-test-renderer": "15.6.2",
     "@types/sinon": "4.3.1",
-    "sinon": "5.0.7"
+    "sinon": "5.0.7",
+    "jest-junit": "3.7.0"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -62,19 +63,23 @@
       "json",
       "lcov",
       "text",
-      "html"
+      "cobertura"
     ],
-    "coverageDirectory": "<rootDir>/cov/",
+    "coverageDirectory": "<rootDir>/jest",
     "moduleNameMapper": {
       "\\.(css|less|scss|sass)$": "identity-obj-proxy"
     },
+    "testResultsProcessor": "jest-junit",
     "coverageThreshold": {
       "global": {
-        "branches": 0,
-        "functions": 0,
-        "lines": 0,
-        "statements": 0
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
       }
     }
+  },
+  "jest-junit": {
+    "output": "./jest/summary-jest-junit.xml"
   }
 }

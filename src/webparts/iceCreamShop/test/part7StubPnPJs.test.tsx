@@ -14,7 +14,7 @@ configure({ adapter: new Adapter() });
 
 describe('Stub pnp js to test the provider', () => {
 
-  let myPnPJsProvider: IceCreamPnPJsProvider
+  let myPnPJsProvider: IceCreamPnPJsProvider;
   let pnpSearchStub: sinon.SinonStub;
   let pnpItemsAddStub: sinon.SinonStub;
   let pnpListGetByTitleStub: sinon.SinonStub;
@@ -35,7 +35,7 @@ describe('Stub pnp js to test the provider', () => {
     pnpItemsAddStub.restore();
   });
 
-  it('should get 3 ice cream flavours when sp.search called', (done) => {
+  it('should return array of 3 items when sp.search called', (done) => {
 
     // mocks the search api so it returns exactly whan we
     // want and no https calls are made
@@ -55,12 +55,12 @@ describe('Stub pnp js to test the provider', () => {
       done();
     }).catch(e => {
       
-      done.fail(new Error('Filed to retrieve data.'))
+      done.fail(new Error('Filed to retrieve data.'));
       // done();
     });
   });
 
-  it('should add new item items.add called', (done) => {
+  it('should pnp add new item be called', (done) => {
 
     // mocks the sp.list.getByTitle api so it resolves with success
     pnpListGetByTitleStub.resolves();
@@ -71,11 +71,11 @@ describe('Stub pnp js to test the provider', () => {
     myPnPJsProvider.buy("123", 1)
     .then(result => { 
 
-      expect(result).toBe(undefined); // since buy is void method 
+      expect(result).toBe(undefined); // since buy is void method  
       done();
     }).catch(e => { 
       
-      done.fail(new Error('Filed to retrieve data.'))
+      done.fail(new Error('Filed to retrieve data.'));
       // done();
     });
   });

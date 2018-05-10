@@ -124,10 +124,10 @@ describe('Sinon stubs', () => {
 });
 // http://sinonjs.org/
 
-// Remarks: In general the last test has two timeouts due to poor design
+// Remarks: In general the last test has two timeouts due void handlers
 // of the react component handlers. It has to wait the first time for 
 // componentDidMount to load the ice creams list, but then has to wait 
 // with setTimeout for the buyHandler to complete because it is void.
-/// If the buyHandler was promise, then this can remove
+/// If the buyHandler was promise, then this would remove
 // the need of a second timeout function.
 

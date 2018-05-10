@@ -11,7 +11,7 @@ import { IceCreamFakeProvider } from '../iceCreamProviders/IceCreamFakeProvider'
 import { IIceCreamShopProps } from '../components/IIceCreamShopProps';
 import { IIceCreamShopState } from '../components/IIceCreamShopState';
 
-describe('Enzyme basic', () => {
+describe('Enzyme basics', () => {
 
   let reactComponent: ReactWrapper<IIceCreamShopProps, IIceCreamShopState>;
 
@@ -39,7 +39,6 @@ describe('Enzyme basic', () => {
 
     // find the element using css selector
     const element = reactComponent.find(cssSelector);
-
     expect(element.length).toBeGreaterThan(0);
   });
 
@@ -51,7 +50,7 @@ describe('Enzyme basic', () => {
     // find the elemet using css selector
     const text = reactComponent.find(cssSelector).text();
 
-    expect(text).toBe("PnP Ice Cream Shop");
+    expect(text).toBe("PnP Ice Cream Shop");  
   });
 });
 
