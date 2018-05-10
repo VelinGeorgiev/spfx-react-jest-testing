@@ -1,6 +1,6 @@
 import { IceCream } from "./IceCream";
 import { IIceCreamProvider } from "./IIceCreamProvider";
-import { SPRest, SearchQuery } from "@pnp/sp";
+import { SPRest, SearchQuery, SearchResult, SearchResults } from "@pnp/sp";
 
 export class IceCreamPnPJsProvider implements IIceCreamProvider {
     
@@ -20,7 +20,7 @@ export class IceCreamPnPJsProvider implements IIceCreamProvider {
                 Querytext: 'path:https://spfxjest.sharepoint.com/sites/jest/Lists/IceCreamFlavours AND contenttypeid:0x01*'
             } as SearchQuery; 
 
-            const searchResults = await this.sp.search(query);
+            const searchResults: SearchResults = await this.sp.search(query);
 
             const result = [];
             for(const item of searchResults.PrimarySearchResults) { 
@@ -31,7 +31,7 @@ export class IceCreamPnPJsProvider implements IIceCreamProvider {
         });
     }
 
-    public buy(uniqueid: string, quantity: number): Promise<void> {
+    public buy(uniqueid: string, quantity: number): Promise<void> { 
 
         return new Promise<void>(async (resolve, reject) =>{
             

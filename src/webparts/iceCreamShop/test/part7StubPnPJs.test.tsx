@@ -4,12 +4,9 @@ import * as React from 'react';
 import { configure, mount, ReactWrapper } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-15';
 
-import { IIceCreamShopProps } from '../components/IIceCreamShopProps';
-import { IIceCreamShopState } from '../components/IIceCreamShopState';
-import IceCreamShop from '../components/IceCreamShop';
 import { IceCreamPnPJsProvider } from '../iceCreamProviders/IceCreamPnPJsProvider';
 import { IceCream } from '../iceCreamProviders/IceCream';
-import { sp } from "@pnp/sp";
+import { sp, SearchResults, Items } from "@pnp/sp";
 
 import * as sinon from 'sinon';
 
@@ -17,117 +14,71 @@ configure({ adapter: new Adapter() });
 
 describe('Stub pnp js to test the provider', () => {
 
-  let reactComponent: ReactWrapper<IIceCreamShopProps, IIceCreamShopState>;
-  let iceCreamPnPJsProviderGetAllStub: sinon.SinonStub;
-  let iceCreamPnPJsProviderBuyStub: sinon.SinonStub;
+  let myPnPJsProvider: IceCreamPnPJsProvider
+  let pnpSearchStub: sinon.SinonStub;
+  let pnpItemsAddStub: sinon.SinonStub;
+  let pnpListGetByTitleStub: sinon.SinonStub;
 
   beforeEach(() => {
-    // set stubs on the pnp js provider so it does not call SharePoint at all
-    iceCreamPnPJsProviderGetAllStub = sinon.stub(IceCreamPnPJsProvider.prototype, "getAll");
-    iceCreamPnPJsProviderBuyStub = sinon.stub(IceCreamPnPJsProvider.prototype, "buy");
+    // set stubs on the pnp js mathods
+    pnpSearchStub = sinon.stub(sp, "search");
+    pnpListGetByTitleStub = sinon.stub(sp.web.lists, "getByTitle");
+    pnpItemsAddStub = sinon.stub(Items.prototype, "add");
+
+    // create instance of the pnp js provider to test it
+    myPnPJsProvider = new IceCreamPnPJsProvider(sp);
   });
 
   afterEach(() => {
-    reactComponent.unmount();
-    iceCreamPnPJsProviderGetAllStub.restore();
-    iceCreamPnPJsProviderBuyStub.restore();
+    pnpSearchStub.restore();
+    pnpListGetByTitleStub.restore();
+    pnpItemsAddStub.restore();
   });
 
-  it('should show 3 ice cream flavours', (done) => {
+  it('should get 3 ice cream flavours when sp.search called', (done) => {
 
-    // mocks the promise and resolves it returnig
-    // 3 items, no https call is made.
-    iceCreamPnPJsProviderGetAllStub.resolves([
-      { UniqueId: "GUID1", Title: "Cherry", Price: 1 },
-      { UniqueId: "GUID2", Title: "Chocolate", Price: 2 },
-      { UniqueId: "GUID3", Title: "Coffee and Cookie", Price: 3 }
-    ] as IceCream[]);
-
-    // mount the component
-    // componentDidMount will be called 
-    // and the component should recieve the data above 
-    reactComponent = mount(React.createElement(
-      IceCreamShop,
-      {
-        iceCreamProvider: new IceCreamPnPJsProvider(sp),
-        strings: {} as IIceCreamShopWebPartStrings
-      }
-    ));
-
-    // since the componentDidMount is a lifecycle event,
-    // we do not know when the promise inside will resolve
-    // this is why we have to add timeout and expect to be 
-    // resolved after the timeout
-    setTimeout(() => {
-      // check if the state is populated with the data
-      const items = reactComponent.state().iceCreamFlavoursList;
-
-      expect(items.length).toBe(3);
-      done();
-    }, 0);
-  });
-
-  it('should show success on successfull buy (e2e unit test)', (done) => {
-
-    // mocks the promise and resolves it returnig
-    // 3 items, no https call is made.
-    iceCreamPnPJsProviderGetAllStub.resolves([
-      { UniqueId: "GUID1", Title: "Cherry", Price: 1 },
-      { UniqueId: "GUID2", Title: "Chocolate", Price: 2 },
-      { UniqueId: "GUID3", Title: "Coffee and Cookie", Price: 3 }
-    ] as IceCream[]);
-
-    // mocks buy success ignoring any calls
-    // over https
-    iceCreamPnPJsProviderBuyStub.resolves();
-
-    // mount the component
-    reactComponent = mount(React.createElement(
-      IceCreamShop,
-      {
-        iceCreamProvider: new IceCreamPnPJsProvider(sp),
-        strings: {
-          TitleLabel: "PnP Ice Cream Shop"
-        } as IIceCreamShopWebPartStrings
-      }
-    ));
-
-    // we have to wait componenDidMount to load
-    // the fake data
-    setTimeout(() => {
-      reactComponent.update();
-
-      // find first ice cream flavour and select it
-      const selectIceCreamButton = reactComponent.find("#iceCreamFlavoursList button").first();
-      selectIceCreamButton.simulate('click');
-
-      reactComponent.update();
-
-      // find the buy button and buy it
-      const buyButton = reactComponent.find("#buyButton").first();
-
-      buyButton.simulate('click');
-
-      // since the buyHandler is a void method,
-      // we do not know when the promise inside will resolve
-      // this is why we have to add timeout and expect to be 
-      // resolved after the timeout
-      setTimeout(() => {
-        // check if the state is populated with the data
-        const items = reactComponent.state().iceCreamFlavoursList;
-
-        expect(reactComponent.state().hasBoughtIceCream).toBe(true);
-        done();
-      }, 0);
+    // mocks the search api so it returns exactly whan we
+    // want and no https calls are made
+    pnpSearchStub.resolves({
+      PrimarySearchResults: [
+        { UniqueId: "GUID1", Title: "Cherry", PriceOWSNMBR: 1 },
+        { UniqueId: "GUID2", Title: "Chocolate", PriceOWSNMBR: 2 },
+        { UniqueId: "GUID3", Title: "Coffee and Cookie", PriceOWSNMBR: 3 }
+      ]
     });
-  }, 0);
-});
-// http://sinonjs.org/
 
-// Remarks: In general the last test has two timeouts due to poor design
-// of the react component handlers. It has to wait the first time for 
-// componentDidMount to load the ice creams list, but then has to wait 
-// with setTimeout for the buyHandler to complete because it is void.
-/// If the buyHandler was promise, then this can remove
-// the need of a second timeout function.
+    // call the stub and see if the provider works as expected
+    myPnPJsProvider.getAll()
+    .then((result: IceCream[]) => { 
+
+      expect(result.length).toBeGreaterThan(0); 
+      done();
+    }).catch(e => {
+      
+      done.fail(new Error('Filed to retrieve data.'))
+      // done();
+    });
+  });
+
+  it('should add new item items.add called', (done) => {
+
+    // mocks the sp.list.getByTitle api so it resolves with success
+    pnpListGetByTitleStub.resolves();
+    // mocks the sp...items.add api so it resolves with success
+    pnpItemsAddStub.resolves(); 
+    
+    // test my pnp provider now
+    myPnPJsProvider.buy("123", 1)
+    .then(result => { 
+
+      expect(result).toBe(undefined); // since buy is void method 
+      done();
+    }).catch(e => { 
+      
+      done.fail(new Error('Filed to retrieve data.'))
+      // done();
+    });
+  });
+});
+// https://facebook.github.io/jest/docs/en/tutorial-async.html
 
