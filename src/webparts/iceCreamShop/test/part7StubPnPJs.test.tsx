@@ -50,7 +50,7 @@ describe('Stub pnp js to test the provider', () => {
     // call the stub and see if the provider works as expected
     myPnPJsProvider.getAll()
     .then((result: IceCream[]) => { 
-
+ 
       expect(result.length).toBeGreaterThan(0); 
       done();
     }).catch(e => {

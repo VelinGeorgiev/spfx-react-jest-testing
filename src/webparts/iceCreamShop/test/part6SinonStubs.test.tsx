@@ -13,7 +13,7 @@ import { sp } from "@pnp/sp";
 
 import * as sinon from 'sinon';
 
-configure({ adapter: new Adapter() });
+configure({ adapter: new Adapter() }); 
 
 describe('Sinon stubs', () => {
 
