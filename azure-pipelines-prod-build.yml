@@ -6,6 +6,11 @@
 pool:
   vmImage: 'Ubuntu 16.04'
 
+trigger:
+  branches:
+      include:
+      - master
+
 steps:
 - task: NodeTool@0
   inputs:
