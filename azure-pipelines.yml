@@ -19,6 +19,11 @@ steps:
   displayName: 'npm install'
 
 - script: |
+    gulp clean
+    gulp build --ship
+  displayName: 'gulp build solution'
+
+- script: |
     npm run test
   displayName: 'npm run test (Jest)'
 
