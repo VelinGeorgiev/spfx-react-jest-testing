@@ -6,6 +6,12 @@
 pool:
   vmImage: 'Ubuntu 16.04'
 
+trigger:
+  branches:
+    exclude:
+    - master
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=vsts&tabs=yaml#pull-request-validation
+
 steps:
 - task: NodeTool@0
   inputs:
