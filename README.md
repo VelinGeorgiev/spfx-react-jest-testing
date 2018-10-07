@@ -63,6 +63,7 @@ The sample uses SPFx web part, but the same setup applies for SPFx extensions an
 
 ## Used SharePoint Framework Version 
 ![drop](https://img.shields.io/badge/drop-1.6.0-green.svg)
+[![Build Status](https://velingeorgiev.visualstudio.com/SPFxJestOffice365CLI/_apis/build/status/VelinGeorgiev.spfx-react-jest-testing)](https://velingeorgiev.visualstudio.com/SPFxJestOffice365CLI/_build/latest?definitionId=2)
 
 ## Applies to
 
