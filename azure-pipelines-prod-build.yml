@@ -20,6 +20,12 @@ steps:
     npm run test
   displayName: 'npm run test (Jest)'
 
+- script: |
+    gulp clean
+    gulp bundle --ship
+    gulp package-solution --ship --packageDir ./release
+  displayName: 'gulp package solution'
+
 # Publish Test Results to Azure Pipelines/TFS
 - task: PublishTestResults@2
   inputs:
