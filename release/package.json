@@ -1,0 +1,15 @@
+{
+  "name": "release",
+  "version": "0.0.3",
+  "private": true,
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+  },
+  "dependencies": {
+    "@pnp/office365-cli":"^1.7.0"
+  },
+  "devDependencies": {
+  }
+}
