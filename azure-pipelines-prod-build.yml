@@ -47,7 +47,7 @@ steps:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
 # Publish Build Artifacts
 # Publish build artifacts to Azure Artifacts/TFS or a file share
-- task: PublishBuildArtifacts@2
+- task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.SourcesDirectory)/release/' 
     artifactName: 'Office 365 CLI scripts' 
