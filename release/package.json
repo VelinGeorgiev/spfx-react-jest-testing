@@ -5,11 +5,9 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "dependencies": {
-    "@pnp/office365-cli":"^1.7.0"
+    "@pnp/office365-cli": "^1.8.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
