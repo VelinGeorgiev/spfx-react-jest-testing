@@ -9,6 +9,4 @@ o365 version
 
 o365 spo login https://velingeorgiev.sharepoint.com --authType password --userName $EMAIL --password $PASS
 
-o365 spo app add --filePath "../SPFx sppkg/react-jest-testing.sppkg" --overwrite --verbose
-
-#o365 spo app remove -i 35625ec7-e7bf-4f54-975a-cfa6c057015f --verbose
+o365 spo app add --filePath "./_SPFx build/SPFx sppkg/react-jest-testing.sppkg" --overwrite --verbose
