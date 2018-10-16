@@ -4,6 +4,8 @@
 
 This "devops" folder contains scripts that can be used to create fully automated devops pipeline that can pickup the SPFx code from the source control, build it and deploy it to SharePoint Online without any user intervention.
 
+![SPFx and Azure Pipelines overview](../assets/config-Azure-Pipelines-in-Github-overview.PNG)
+
 ## The example uses Github, but the same pipeline can be used with Azure DevOps git repos.
 
 The example has build and release scripts that can be used with Github as well as with Azure DevOps git repos. I will use the Github since it is free and can be tested by everyone.
