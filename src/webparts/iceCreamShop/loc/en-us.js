@@ -8,6 +8,6 @@ define([], function() {
     "ForLabel": "for",
     "BuyLabel": "Buy",
     "SuccessLabel": "Success",
-    "TitleLabel": "PnP Ice Cream Shop 2"
+    "TitleLabel": "PnP Ice Cream Shop 3"
   }
 });
