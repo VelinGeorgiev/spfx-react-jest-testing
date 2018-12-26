@@ -34,7 +34,7 @@ export default class IceCreamShopWebPart extends BaseClientSideWebPart<IIceCream
     const element: React.ReactElement<IIceCreamShopProps> = React.createElement(
       IceCreamShop,
       {
-        iceCreamProvider: new IceCreamPnPJsProvider(sp), //new IceCreamFakeProvider() // replace with Fake provider when offline workbench.
+        iceCreamProvider: new IceCreamFakeProvider(), //new IceCreamPnPJsProvider(sp) // replace with Fake provider when offline workbench.
         strings: strings
       }
     );
