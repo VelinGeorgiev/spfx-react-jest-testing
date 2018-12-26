@@ -31,41 +31,24 @@ steps:
     gulp package-solution --ship --packageDir ./release
   displayName: 'Build and package the solution'
 
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
-# Publish Build Artifacts
-# Publish build artifacts to Azure Artifacts/TFS or a file share
+# Publish Build Artifacts SPFx sppkg
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.SourcesDirectory)/sharepoint/solution/react-jest-testing.sppkg' 
     artifactName: 'SPFx sppkg' 
-    #publishLocation: 'Container' # Options: container, filePath
-    #targetPath: # Required when publishLocation == FilePath
-    #parallel: false # Optional
-    #parallelCount: # Optional
   displayName: 'Publish build SPFx artifacts'
+  # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
 
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=vsts
-# Publish Build Artifacts
-# Publish build artifacts to Azure Artifacts/TFS or a file share
+# Publish Build Artifacts Office 365 CLI
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.SourcesDirectory)/release/' 
+    pathtoPublish: '$(Build.SourcesDirectory)/devops/release/' 
     artifactName: 'Office 365 CLI scripts' 
-    #publishLocation: 'Container' # Options: container, filePath
-    #targetPath: # Required when publishLocation == FilePath
-    #parallel: false # Optional
-    #parallelCount: # Optional
   displayName: 'Publish build Office 365 CLI artifacts'
 
-# Publish Test Results to Azure Pipelines/TFS
+# Publish Test Results to Azure Pipelines
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit
     testResultsFiles: '**/summary-jest-junit.xml'
-    #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
-    #mergeTestResults: false # Optional
-    #testRunTitle: # Optional
-    #buildPlatform: # Optional
-    #buildConfiguration: # Optional
-    #publishRunAttachments: true # Optional
   displayName: 'Publish test results'
