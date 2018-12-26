@@ -18,6 +18,14 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    rm -rf node_modules
+  displayName: 'Remove node_modules'
+
+- script: |
+    rm package-lock.json
+  displayName: 'Remove package-lock.json'
+
+- script: |
     npm install
   displayName: 'Run npm install'
 
