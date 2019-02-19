@@ -11,6 +11,6 @@ o365 version
 
 o365 spo login $SITE_URL --authType password --userName $EMAIL --password $PASS
 
-o365 spo app add --filePath "./_SPFx build/SPFx sppkg/react-jest-testing.sppkg" --scope $SCOPE --overwrite
+o365 spo app add --filePath "./_SPFx build/SPFx sppkg/react-jest-testing.sppkg" --appCatalogUrl $SITE_URL --scope $SCOPE --overwrite
 
-o365 spo app deploy --name react-jest-testing.sppkg --scope $SCOPE --skipFeatureDeployment
+o365 spo app deploy --name react-jest-testing.sppkg --appCatalogUrl $SITE_URL --scope $SCOPE --skipFeatureDeployment
